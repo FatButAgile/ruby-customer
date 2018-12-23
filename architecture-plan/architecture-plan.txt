@@ -1,0 +1,17 @@
+##### ARCHITECTURE PLAN
+
+##--- 1: ARGUMENTS: - Excel spreadsheet with recipes [recipeSheet.xls]; Excel spreadsheet with stock [stockSheet.xls]; 
+		      list of recipes for the week [recipePlan ENV variable]; lunch/breakfast options [lunch/breakfast BOOLEAN ENV variables].
+
+##--- 2: RETURNS: - Text file with shopping list and quantities [shoppingList.txt]
+
+##--- 3: INFRASTRUCTURE: Ruby scripts which take `recipePlan` (and optional lunch/breakfast variables) and create a list using recipeSheet,
+			 then remove items based on what is already in stockSheet. 
+
+##--- 4: RULES: - recipeSheet has a column with header [row 1] as the recipe name and all rows below this as ingredients. To the immediate
+		  right of each ingredient is a quantity (either a natural number i.e. 1 or 2, or a value in grams). Another sheet inside
+		  workbook includes the standard breakfast and lunch foods.
+		- stockSheet is set up similarly but with only one column of food.
+		- recipePlan variables are in a Ruby array; the names are strings which match each column header in recipeSheet.
+		- lunch/breakfast are Boolean (true/false) values only - if true, standard foods are added for these based on
+		  stockSheet and recipeSheet.  
